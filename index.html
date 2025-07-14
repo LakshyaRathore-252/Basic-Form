@@ -3,8 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Basic Form</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
   </head>
   <body>
     <div class="left_part">
@@ -19,9 +21,21 @@
             <label for="email">Email: </label>
           <input type="tetx" id="loginEmail" placeholder="Email" name="email" />
         </div>
-        <div class="form_subgroup">
+        <div class="form_subgroup" style="position: relative;">
           <label for=password">Password:</label>
-          <input type="password" placeholder="Password" id="loginPassword"  minlength="6" required name="password" />
+          <input 
+          type="password" 
+          placeholder="Password" 
+          id="loginPassword"
+            minlength="6"
+             required 
+             name="password" 
+             />
+              <i 
+            class="fa-solid fa-eye-slash" 
+            id="togglePassword" 
+            style="position: absolute; top: 60%; right: 10px; cursor: pointer;">
+  </i>
 
         </div>
     <p>
@@ -48,7 +62,18 @@
 
         <div class="form_subgroup">
           <label for="phoneno">Phone No:</label>
-          <input type="tel"  name="phoneno" id="phoneno" minlength="10" placeholder="Phone No" required />
+          <input 
+           type="tel"
+            name="phoneno"
+            id="phoneno"
+            minlength="10"
+            maxlength="10"
+            placeholder="Phone No"
+            pattern="\d{10}"
+            required
+          oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+            
+             />
 
         </div>
 

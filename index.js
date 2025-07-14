@@ -42,8 +42,7 @@ signBtn.addEventListener("click", () => {
 })
 
 
-// Form Submission
-
+// Login Form
 loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -60,11 +59,19 @@ loginForm.addEventListener("submit", (e) => {
         return;
     }
 
-    alert("Loogin successful , check console");
 
+    window.location.href = "dashboard.html"
+
+    let data = {
+        email,
+        password
+    }
     console.log("form Submitted ", email, password)
+    localStorage.setItem("user", JSON.stringify(data)) // Storing user data in local storage
 
 })
+
+// SignUp Form Logic
 
 signForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -81,7 +88,7 @@ signForm.addEventListener("submit", (e) => {
         return;
     }
 
-    if(name.length < 3){
+    if (name.length < 3) {
         alert("Name must be 3+ chars")
         return;
     }
@@ -102,9 +109,46 @@ signForm.addEventListener("submit", (e) => {
 
     }
 
-    alert("Register successful , check console");
+    // alert("Register successful , User Data To local Storage!");
+
+    let data = {
+        name, email, phoneno, address
+    }
+
+    localStorage.setItem("user", JSON.stringify(data)) // Storing user data in local storage
+
+    window.location.href = "/dashboard.html"
+
 
     console.log("User Registered Successfully", name, email, phoneno, address)
 
 }
 )
+
+
+// Password Eye logic
+
+const togglePassword = document.getElementById("togglePassword");
+const password = document.getElementById("loginPassword");
+
+togglePassword.addEventListener("click", () => {
+    const type = password.getAttribute("type") === "password" ? "text" : "password";
+    password.setAttribute("type", type);
+
+    togglePassword.classList.toggle("fa-eye");
+    togglePassword.classList.toggle("fa-eye-slash");
+})
+
+
+
+window.onload = () => {
+    const user = localStorage.getItem("user");
+
+
+    if (user) {
+        window.location.href = "/dashboard.html";
+
+    } else {
+        alert("No user data found in localStorage , Login in Again")
+    }
+}
