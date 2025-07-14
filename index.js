@@ -56,9 +56,11 @@ loginForm.addEventListener("submit", (e) => {
     }
 
     if (!/^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})/.test(password)) {
-        alert("Password length should be equal or more than 6")
+        alert("Password must be 6+ chars with a number and special char")
         return;
     }
+
+    alert("Loogin successful , check console");
 
     console.log("form Submitted ", email, password)
 
@@ -79,6 +81,11 @@ signForm.addEventListener("submit", (e) => {
         return;
     }
 
+    if(name.length < 3){
+        alert("Name must be 3+ chars")
+        return;
+    }
+
     if (!/^[^@]+@[^@]+\.[a-z]{2,6}$/.test(email)) {
         alert("Invalid Email")
         return;
@@ -94,6 +101,9 @@ signForm.addEventListener("submit", (e) => {
         return;
 
     }
+
+    alert("Register successful , check console");
+
     console.log("User Registered Successfully", name, email, phoneno, address)
 
 }
