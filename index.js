@@ -62,13 +62,9 @@ loginForm.addEventListener("submit", (e) => {
 
     window.location.href = "dashboard.html"
 
-    let data = {
-        email,
-        password
-    }
-    console.log("form Submitted ", email, password)
-    localStorage.setItem("user", JSON.stringify(data)) // Storing user data in local storage
 
+    console.log("form Submitted ", email, password)
+    localStorage.setItem("isLoggedIn", "true");
 })
 
 // SignUp Form Logic
@@ -80,6 +76,8 @@ signForm.addEventListener("submit", (e) => {
     const email = document.getElementById("email").value;
     const phoneno = document.getElementById("phoneno").value.trim();
     const address = document.getElementById("address").value.trim();
+    const password = document.getElementById("signPassword").value.trim();
+    const confirmPassword = document.getElementById("confirmPassword").value.trim();
 
     console.log(email, name, phoneno, address)
 
@@ -92,6 +90,18 @@ signForm.addEventListener("submit", (e) => {
         alert("Name must be 3+ chars")
         return;
     }
+
+    if (password !== confirmPassword) {
+        alert("Password does not match")
+        return;
+    }
+
+    if (!/^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})/.test(password) && !/^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{6,})/.test(confirmPassword)) {
+        alert("Password must be 6+ chars with a number and special char")
+        return;
+    }
+
+
 
     if (!/^[^@]+@[^@]+\.[a-z]{2,6}$/.test(email)) {
         alert("Invalid Email")
@@ -109,13 +119,13 @@ signForm.addEventListener("submit", (e) => {
 
     }
 
-    // alert("Register successful , User Data To local Storage!");
 
     let data = {
-        name, email, phoneno, address
+        name, email, phoneno, address, password
     }
 
     localStorage.setItem("user", JSON.stringify(data)) // Storing user data in local storage
+    localStorage.setItem("isLoggedIn", "true");
 
     window.location.href = "/dashboard.html"
 
@@ -140,15 +150,41 @@ togglePassword.addEventListener("click", () => {
 })
 
 
+// Show/Hide Signup Password
+const signPassword = document.getElementById("signPassword");
+const toggleSignupPassword = document.getElementById("toggleSignupPassword");
+
+toggleSignupPassword.addEventListener("click", () => {
+    const type = signPassword.getAttribute("type") === "password" ? "text" : "password";
+    signPassword.setAttribute("type", type);
+
+    toggleSignupPassword.classList.toggle("fa-eye");
+    toggleSignupPassword.classList.toggle("fa-eye-slash");
+});
+
+// Show/Hide Confirm Password
+const confirmPassword = document.getElementById("confirmPassword");
+const toggleConfirmPassword = document.getElementById("toggleConfirmPassword");
+
+toggleConfirmPassword.addEventListener("click", () => {
+    const type = confirmPassword.getAttribute("type") === "password" ? "text" : "password";
+    confirmPassword.setAttribute("type", type);
+
+    toggleConfirmPassword.classList.toggle("fa-eye");
+    toggleConfirmPassword.classList.toggle("fa-eye-slash");
+});
+
 
 window.onload = () => {
+    const isLoggin = localStorage.getItem("isLoggedIn");
     const user = localStorage.getItem("user");
 
-
-    if (user) {
+    if (isLoggin === "true") {
         window.location.href = "/dashboard.html";
 
-    } else {
+    }
+    if (!user) {
         alert("No user data found in localStorage , Login in Again")
     }
+
 }
