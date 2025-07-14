@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="left_part">
+      <h2>
+        Hello !
+        <br />
+        <span id="loginText">Login to Your account</span>
+      </h2>
+      <!-- Login Form -->
+      <form class="active activeForm " id="loginForm">
+          <div class="form_subgroup">
+            <label for="email">Email: </label>
+          <input type="tetx" id="loginEmail" placeholder="Email" name="email" />
+        </div>
+        <div class="form_subgroup">
+          <label for=password">Password:</label>
+          <input type="password" placeholder="Password" id="loginPassword"  minlength="6" required name="password" />
+
+        </div>
+    <p>
+            New Here <span id="loginBtn">Register</span>   
+    </p>
+
+        <button class="btn">Submit</button>
+      </form>
+
+      <!-- Sign Form -->
+      <form class="activeForm " id="registerForm">
+        <div class="form_subgroup">
+          <label for="name">Name:</label>
+          <input type="text" name="name" id="name" placeholder="Name" required />
+
+        </div>
+
+        <div class="form_subgroup">
+          <label for="email">Email:</label>
+          <input type="email" name="email" id="email" placeholder="Email" required />
+           <small class="error"></small>
+
+        </div>
+
+        <div class="form_subgroup">
+          <label for="phoneno">Phone No:</label>
+          <input type="tel"  name="phoneno" id="phoneno" minlength="10" placeholder="Phone No" required />
+
+        </div>
+
+        <div class="form_subgroup"> 
+          <label for="address">Address:</label>
+          <input type="text" name="address" id="address" placeholder="Address" required />
+
+        </div>
+
+        <p>Already Have Account <span id="signBtn">Login</span></p>
+        <button class="btn" type="submit">Signup</button>
+      </form>
+    </div>
+    <div class="right_part">
+      <!-- For Login-->
+      <h2 class="activeText heading" id="text_head1">Welcome Back !</h2>
+        
+      <!-- For Register -->
+       <h2 class="heading" id="text_head2">Gald to see You!</h2>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta eveniet
+        omnis .
+      </p>
+    </div>
+
+    <script src="index.js">
+
+    </script>
+  </body>
+</html>
