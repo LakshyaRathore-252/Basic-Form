@@ -63,12 +63,20 @@ loginForm.addEventListener("submit", (e) => {
         alert("User does not exist , Please Register First")
         return;
     }
+    const data = localStorage.getItem("user");
+    const user = JSON.parse(data);
+    if (user.email === email && user.password === password) {
 
-    window.location.href = "dashboard.html"
+        window.location.href = "dashboard.html"
+        localStorage.setItem("isLoggedIn", "true");
+    } else {
+        alert("Invalid Credentials");
+        localStorage.setItem("isLoggedIn", "false");
+
+    }
 
 
     console.log("form Submitted ", email, password)
-    localStorage.setItem("isLoggedIn", "true");
 })
 
 // SignUp Form Logic
