@@ -59,6 +59,10 @@ loginForm.addEventListener("submit", (e) => {
         return;
     }
 
+    if (localStorage.getItem("user") === null) {
+        alert("User does not exist , Please Register First")
+        return;
+    }
 
     window.location.href = "dashboard.html"
 
